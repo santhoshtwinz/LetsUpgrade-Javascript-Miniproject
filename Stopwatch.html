@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+    <head>
+       
+
+<link href='https://fonts.googleapis.com/css?family=Michroma' rel='stylesheet'>
+
+<style>
+.timer{
+font-family: 'Michroma';
+font-size:27px;
+font-weight:900;
+border-radius:30px;
+line-height: 1.2;
+letter-spacing: 0.6em;
+text-align: center;
+}
+.timer:hover{
+box-shadow: 5px 8px 16px 0 rgba(0,0,0,0.9);}
+
+</style>
+
+</head>
+<body style ="background-image: url('///C:/Users/santhosh/Desktop/38893491-freeze-wallpapers.jpg');background-size: 1600px;">
+
+<div class= "timer" >
+<div>STOPWATCH</div>
+<div>Min:Sec:Ms</div>
+<div id = "timeXS">00:00:00</div>
+<button onclick=start() id="startButton">START YOUR TIMER</button>
+<button onclick=stop() id="pauseButton">PAUSE</button>
+<button onclick=reset() id="resetButton">RESET YOUR TIMER</button>
+</div>
+
+
+
+</body>
+<script>
+
+var start;
+function start(){
+document.getElementById("startButton").disabled=true;
+document.getElementById("resetButton").disabled=true;
+startStop = setInterval(()=>{
+stopwatchX();
+},15);}
+
+function stop(){debugger;
+document.getElementById("startButton").disabled=false;
+document.getElementById("resetButton").disabled=false;
+clearTimeout(startStop);
+}
+
+function reset(){
+baseTym=document.getElementById('timeXS').innerHTML;
+splitTym=baseTym.split(':');
+splitTym = ['00','00','00'];
+document.getElementById('timeXS').innerHTML = splitTym[0]+":"+splitTym[1]+":"+splitTym[2];
+}
+function stopwatchX(){
+baseTym=document.getElementById('timeXS').innerHTML;
+splitTym=baseTym.split(':');
+splitTym[2]=parseInt(splitTym[2])+1;
+
+if(splitTym[2]>=60)
+{splitTym[2]='00';
+splitTym[1]=parseInt(splitTym[1])+1;
+
+}
+if(splitTym[1]>=60)
+{splitTym[1]='00';
+splitTym[0]=parseInt(splitTym[0])+1;
+
+}
+
+
+document.getElementById('timeXS').innerHTML = splitTym[0]+":"+splitTym[1]+":"+splitTym[2];
+splitTym=(document.getElementById('timeXS').innerHTML).split(':');
+
+if(splitTym[0].length==1)
+{
+splitTym[0]="0"+splitTym[0];
+}
+if(splitTym[1].length==1)
+{
+splitTym[1]="0"+splitTym[1];
+}
+if(splitTym[2].length==1)
+{
+splitTym[2]="0"+splitTym[2];
+}
+document.getElementById('timeXS').innerHTML = splitTym[0]+":"+splitTym[1]+":"+splitTym[2];
+
+}
+</script></html>
